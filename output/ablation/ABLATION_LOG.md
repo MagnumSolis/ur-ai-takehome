@@ -82,6 +82,49 @@ column misattribution: False
 | scan_200dpi_skew (simulated scan) | 0 cells (text gate: unusable; routed to OCR path) | not run |
 | scan_200dpi_crop (simulated scan) | 0 cells (text gate: unusable; routed to OCR path) | not run |
 
+## Answerability probe
+
+10 authored questions (`eval/probe_questions.json`) answered by deterministic path
+lookup (`eval/probe_runner.py`), scored 0/1/2: 2 = correct with exact row-path
+citation, 1 = correct value but degraded provenance (non-exact lookup tier),
+0 = wrong/absent/refused-when-answerable. Ambiguous duplicated labels are refused,
+never guessed. OCR artifacts are built from OCR output alone
+(`eval/ocr_to_artifact.py`), so the probe is non-circular.
+
+| question | gold | deterministic (text layer) | Unlimited-OCR scan_200dpi | Unlimited-OCR scan_120dpi |
+|----------|------|----------------------------|---------------------------|---------------------------|
+| q01 Accumulated depreciation of buildings and st... | -1923585 | 2: -1923585 | 0: refuse (label_only), disassociation | 0: refuse (label_only), disassociation |
+| q02 Lease assets recorded under intangible fixed... | 21402 | 2: 21402 | 2: 21402 | 2: 21402 |
+| q03 Construction in progress as of 2025-03-31? (... | 0 | 2: 0 | 0: absent, omission | 0: absent, omission |
+| q04 Allowance for doubtful accounts as of 2026-0... | 0 | 2: 0 | 2: 0 | 2: 0 |
+| q05 By how much did cash and deposits change fro... | -1394148 | 2: -1394148 | 2: -1394148 | 2: -1394148 |
+| q06 Machinery and transport equipment, net, as o... | 336708 | 2: 336708 | 1: 336708 (fuzzy) | 1: 336708 (label_only) |
+| q07 Total fixed assets as of 2025-03-31 (thousan... | 1670426 | 2: 1670426 | 2: 1670426 | 2: 1670426 |
+| q08 Accumulated depreciation of lease assets (ta... | -172066 | 2: -172066 | 0: refuse (label_only), disassociation | 0: refuse (label_only), disassociation |
+| q09 By how much did total assets decrease from F... | 2398861 | 2: 2398861 | 2: 2398861 | 2: 2398861 |
+| q10 Total current liabilities as of 2026-03-31 (... | refuse | 2: refuse | 2: refuse | 2: refuse |
+
+| condition | probe score | failures |
+|-----------|-------------|----------|
+| deterministic (text layer) | 20/20 | {} |
+| Unlimited-OCR scan_200dpi | 13/20 | {"disassociation": 2, "omission": 1, "provenance_degraded": 1} |
+| Unlimited-OCR scan_120dpi | 13/20 | {"disassociation": 2, "omission": 1, "provenance_degraded": 1} |
+
+- Deterministic artifact: 20/20, every answer cited by exact row path.
+- Both OCR artifacts: 13/20 with an identical failure pattern: the two
+  duplicated-label questions (減価償却累計額 under a specific parent) are refused
+  as ambiguous (disassociation -- the OCR output loses parent-item scoping), the
+  nil cell 建設仮勘定 FY2025 is dropped (omission), and the derived （純額） question
+  scores 1 (value correct, provenance degraded). Every value the OCR artifacts
+  could produce was correct, including △0 and the YoY arithmetic.
+- The refusal guard held in all three conditions: the liabilities question was
+  refused rather than fabricated (2/2 on q10 everywhere).
+- Honest notes: the `misattribution` class never fired (both OCR headers carried
+  parseable dates, so no column/period confusion arose in these runs); no question
+  required non-deterministic scoring. Authoring caught one real spec bug before
+  freeze: the YoY direction convention was ambiguous, fixed with an explicit
+  `direction` field per question.
+
 ## Observations
 
 - The deterministic pipeline extracts 74/74 cells with zero issues on the text-layer

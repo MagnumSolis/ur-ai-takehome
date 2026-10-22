@@ -135,6 +135,72 @@ def main() -> int:
         det = "0 cells (text gate: unusable; routed to OCR path)"
         a(f"| {s['case']} (simulated scan) | {det} | {s['ocr']} |")
     a("")
+
+    # ---- answerability probe ----
+    a("## Answerability probe")
+    a("")
+    a("10 authored questions (`eval/probe_questions.json`) answered by deterministic path")
+    a("lookup (`eval/probe_runner.py`), scored 0/1/2: 2 = correct with exact row-path")
+    a("citation, 1 = correct value but degraded provenance (non-exact lookup tier),")
+    a("0 = wrong/absent/refused-when-answerable. Ambiguous duplicated labels are refused,")
+    a("never guessed. OCR artifacts are built from OCR output alone")
+    a("(`eval/ocr_to_artifact.py`), so the probe is non-circular.")
+    a("")
+    from eval.ocr_to_artifact import build_artifact  # noqa: E402
+    from eval.probe_runner import run_probe  # noqa: E402
+
+    conditions = [
+        ("deterministic (text layer)", os.path.join(ROOT, "output", "canonical.json")),
+        ("Unlimited-OCR scan_200dpi", os.path.join(OUT, "scan_200dpi_base_artifact.json")),
+        ("Unlimited-OCR scan_120dpi", os.path.join(OUT, "scan_120dpi_base_artifact.json")),
+    ]
+    probe_results = {}
+    for case in ("scan_200dpi", "scan_120dpi"):
+        raw = OCR_RAW[case]
+        if os.path.exists(raw) and open(raw, encoding="utf-8").read().strip():
+            art = build_artifact(open(raw, encoding="utf-8").read(), case)
+            with open(os.path.join(OUT, f"{case}_base_artifact.json"), "w", encoding="utf-8") as f:
+                json.dump(art, f, ensure_ascii=False, indent=2)
+    questions_path = os.path.join(ROOT, "eval", "probe_questions.json")
+    for name, path in conditions:
+        probe_results[name] = run_probe(path, questions_path)
+
+    a("| question | gold | deterministic (text layer) | Unlimited-OCR scan_200dpi | Unlimited-OCR scan_120dpi |")
+    a("|----------|------|----------------------------|---------------------------|---------------------------|")
+    for qi, q in enumerate(json.load(open(questions_path, encoding="utf-8"))["questions"]):
+        cells = []
+        for name, _ in conditions:
+            r = probe_results[name]["results"][qi]
+            ans = r["answer"]
+            txt = ans.get("kind") if ans["kind"] in ("absent", "refuse") else ans.get("display")
+            extra = f" ({r['tier']})" if r["tier"] not in ("exact", "absent_by_scope") else ""
+            fclass = f", {r['failure_class']}" if r["failure_class"] else ""
+            cells.append(f"{r['score']}: {txt}{extra}{fclass}")
+        gold = q["answer"]
+        gold_txt = gold["kind"] if gold["kind"] == "refuse" else gold.get("display")
+        a(f"| {q['id']} {q['question_en'][:44]}... | {gold_txt} | " + " | ".join(cells) + " |")
+    a("")
+    a("| condition | probe score | failures |")
+    a("|-----------|-------------|----------|")
+    for name, _ in conditions:
+        pr = probe_results[name]
+        a(f"| {name} | {pr['total']}/{pr['max']} | {json.dumps(pr['by_class'])} |")
+    a("")
+    a("- Deterministic artifact: 20/20, every answer cited by exact row path.")
+    a("- Both OCR artifacts: 13/20 with an identical failure pattern: the two")
+    a("  duplicated-label questions (減価償却累計額 under a specific parent) are refused")
+    a("  as ambiguous (disassociation -- the OCR output loses parent-item scoping), the")
+    a("  nil cell 建設仮勘定 FY2025 is dropped (omission), and the derived （純額） question")
+    a("  scores 1 (value correct, provenance degraded). Every value the OCR artifacts")
+    a("  could produce was correct, including △0 and the YoY arithmetic.")
+    a("- The refusal guard held in all three conditions: the liabilities question was")
+    a("  refused rather than fabricated (2/2 on q10 everywhere).")
+    a("- Honest notes: the `misattribution` class never fired (both OCR headers carried")
+    a("  parseable dates, so no column/period confusion arose in these runs); no question")
+    a("  required non-deterministic scoring. Authoring caught one real spec bug before")
+    a("  freeze: the YoY direction convention was ambiguous, fixed with an explicit")
+    a("  `direction` field per question.")
+    a("")
     a("## Observations")
     a("")
     a("- The deterministic pipeline extracts 74/74 cells with zero issues on the text-layer")

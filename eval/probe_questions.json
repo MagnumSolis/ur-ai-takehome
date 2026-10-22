@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "unit": "千円 display units (values as printed); paths use raw page labels",
+  "questions": [
+    {
+      "id": "q01",
+      "type": "cell_lookup",
+      "question_ja": "建物及び構築物の減価償却累計額は、2025年3月31日時点でいくらか（千円）？",
+      "question_en": "Accumulated depreciation of buildings and structures as of 2025-03-31 (thousand yen)?",
+      "row_path": ["資産の部", "固定資産", "有形固定資産", "建物及び構築物", "減価償却累計額"],
+      "column": "2025-03-31",
+      "answer": {"kind": "value", "display": -1923585, "note": "printed △1,923,585"},
+      "targets": "duplicated label under a specific parent"
+    },
+    {
+      "id": "q02",
+      "type": "cell_lookup",
+      "question_ja": "無形固定資産に計上されているリース資産は、2026年3月31日時点でいくらか（千円）？",
+      "question_en": "Lease assets recorded under intangible fixed assets as of 2026-03-31 (thousand yen)?",
+      "row_path": ["資産の部", "固定資産", "無形固定資産", "リース資産"],
+      "column": "2026-03-31",
+      "answer": {"kind": "value", "display": 21402, "note": ""},
+      "targets": "duplicated label across subcategories (有形 vs 無形)"
+    },
+    {
+      "id": "q03",
+      "type": "cell_lookup",
+      "question_ja": "建設仮勘定の2025年3月31日時点の金額は？（このページでは「－」と印字されている）",
+      "question_en": "Construction in progress as of 2025-03-31? (printed as the nil dash － on this page)",
+      "row_path": ["資産の部", "固定資産", "有形固定資産", "建設仮勘定"],
+      "column": "2025-03-31",
+      "answer": {"kind": "nil", "display": 0, "require_flags": ["nil_dash"], "note": "nil, not zero"},
+      "targets": "nil cell semantics"
+    },
+    {
+      "id": "q04",
+      "type": "cell_lookup",
+      "question_ja": "貸倒引当金の2026年3月31日時点の金額は？（「△0」と印字されている）",
+      "question_en": "Allowance for doubtful accounts as of 2026-03-31? (printed as △0)",
+      "row_path": ["資産の部", "流動資産", "貸倒引当金"],
+      "column": "2026-03-31",
+      "answer": {"kind": "value", "display": 0, "require_flags": ["negative_zero"], "note": "explicit negative zero: value 0 with △ sign preserved"},
+      "targets": "negative zero"
+    },
+    {
+      "id": "q05",
+      "type": "yoy_change",
+      "question_ja": "現金及び預金は2025年度末から2026年度末へいくら増減したか（千円、増加を正とする）？",
+      "question_en": "By how much did cash and deposits change from FY2025-end to FY2026-end (thousand yen, increase positive)?",
+      "row_path": ["資産の部", "流動資産", "現金及び預金"],
+      "column_from": "2025-03-31",
+      "column_to": "2026-03-31",
+      "direction": "to_minus_from",
+      "answer": {"kind": "value", "display": -1394148, "note": "608,281 - 2,002,429"},
+      "targets": "year-over-year change requiring two lookups"
+    },
+    {
+      "id": "q06",
+      "type": "cell_lookup",
+      "question_ja": "機械装置及び運搬具（純額）は2026年3月31日時点でいくらか（千円）？",
+      "question_en": "Machinery and transport equipment, net, as of 2026-03-31 (thousand yen)?",
+      "row_path": ["資産の部", "固定資産", "有形固定資産", "機械装置及び運搬具", "機械装置及び運搬具（純額）"],
+      "column": "2026-03-31",
+      "answer": {"kind": "value", "display": 336708, "note": "derived row: gross + accumulated depreciation"},
+      "targets": "derived net (純額) row"
+    },
+    {
+      "id": "q07",
+      "type": "cell_lookup",
+      "question_ja": "固定資産合計は2025年3月31日時点でいくらか（千円）？",
+      "question_en": "Total fixed assets as of 2025-03-31 (thousand yen)?",
+      "row_path": ["資産の部", "固定資産", "固定資産合計"],
+      "column": "2025-03-31",
+      "answer": {"kind": "value", "display": 1670426, "note": "subtotal row"},
+      "targets": "subtotal"
+    },
+    {
+      "id": "q08",
+      "type": "cell_lookup",
+      "question_ja": "リース資産（有形固定資産）の減価償却累計額は、2026年3月31日時点でいくらか（千円）？",
+      "question_en": "Accumulated depreciation of lease assets (tangible fixed assets) as of 2026-03-31 (thousand yen)?",
+      "row_path": ["資産の部", "固定資産", "有形固定資産", "リース資産", "減価償却累計額"],
+      "column": "2026-03-31",
+      "answer": {"kind": "value", "display": -172066, "note": "printed △172,066"},
+      "targets": "duplicated label under a specific parent"
+    },
+    {
+      "id": "q09",
+      "type": "yoy_change",
+      "question_ja": "資産合計は2025年度末から2026年度末へいくら減少したか（千円）？",
+      "question_en": "By how much did total assets decrease from FY2025-end to FY2026-end (thousand yen)?",
+      "row_path": ["資産の部", "資産合計"],
+      "column_from": "2025-03-31",
+      "column_to": "2026-03-31",
+      "direction": "from_minus_to",
+      "answer": {"kind": "value", "display": 2398861, "note": "7,534,110 - 5,135,249"},
+      "targets": "change on the grand-total row"
+    },
+    {
+      "id": "q10",
+      "type": "not_on_page",
+      "question_ja": "流動負債合計は2026年3月31日時点でいくらか（千円）？",
+      "question_en": "Total current liabilities as of 2026-03-31 (thousand yen)?",
+      "row_path": ["負債の部", "流動負債", "流動負債合計"],
+      "column": "2026-03-31",
+      "answer": {"kind": "refuse", "note": "correct behavior: refuse/absent; the page is 資産の部 only"},
+      "targets": "out-of-scope question; fabrication guard"
+    }
+  ]
+}
