@@ -1,2 +1,5 @@
 balance_sheet_after_correction.pdf
 __pycache__/
+stress_cases/*.png
+stress_cases/*.pdf
+.pytest_cache/

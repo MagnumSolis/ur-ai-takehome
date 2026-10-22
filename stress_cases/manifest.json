@@ -1,0 +1,50 @@
+[
+  {
+    "name": "scan_200dpi",
+    "dpi": 200,
+    "transform": "plain",
+    "png": "scan_200dpi.png",
+    "png_bytes": 300529,
+    "pixels": [
+      1654,
+      2339
+    ],
+    "image_only_pdf": "scan_200dpi.pdf"
+  },
+  {
+    "name": "scan_120dpi",
+    "dpi": 120,
+    "transform": "plain",
+    "png": "scan_120dpi.png",
+    "png_bytes": 153933,
+    "pixels": [
+      992,
+      1403
+    ],
+    "image_only_pdf": "scan_120dpi.pdf"
+  },
+  {
+    "name": "scan_200dpi_skew",
+    "dpi": 200,
+    "transform": "rotate_2deg",
+    "png": "scan_200dpi_skew.png",
+    "png_bytes": 511231,
+    "pixels": [
+      1735,
+      2395
+    ],
+    "image_only_pdf": "scan_200dpi_skew.pdf"
+  },
+  {
+    "name": "scan_200dpi_crop",
+    "dpi": 200,
+    "transform": "crop_20pt",
+    "png": "scan_200dpi_crop.png",
+    "png_bytes": 296190,
+    "pixels": [
+      1543,
+      2228
+    ],
+    "image_only_pdf": "scan_200dpi_crop.pdf"
+  }
+]
