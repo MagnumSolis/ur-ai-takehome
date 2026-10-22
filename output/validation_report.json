@@ -1,0 +1,247 @@
+{
+  "checks": [
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/建物及び構築物/建物及び構築物(純額)",
+      "column": "2025-03-31",
+      "printed_display": 197775,
+      "computed_display": 197775,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 2,
+      "status": "exact"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/建物及び構築物/建物及び構築物(純額)",
+      "column": "2026-03-31",
+      "printed_display": 239828,
+      "computed_display": 239829,
+      "deviation_display": 1,
+      "deviation_yen": 1000,
+      "tolerance_display": 2,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/機械装置及び運搬具/機械装置及び運搬具(純額)",
+      "column": "2025-03-31",
+      "printed_display": 390757,
+      "computed_display": 390757,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 2,
+      "status": "exact"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/機械装置及び運搬具/機械装置及び運搬具(純額)",
+      "column": "2026-03-31",
+      "printed_display": 336708,
+      "computed_display": 336708,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 2,
+      "status": "exact"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/リース資産/リース資産(純額)",
+      "column": "2025-03-31",
+      "printed_display": 63146,
+      "computed_display": 63147,
+      "deviation_display": 1,
+      "deviation_yen": 1000,
+      "tolerance_display": 2,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/リース資産/リース資産(純額)",
+      "column": "2026-03-31",
+      "printed_display": 41872,
+      "computed_display": 41873,
+      "deviation_display": 1,
+      "deviation_yen": 1000,
+      "tolerance_display": 2,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/その他/その他(純額)",
+      "column": "2025-03-31",
+      "printed_display": 8439,
+      "computed_display": 8439,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 2,
+      "status": "exact"
+    },
+    {
+      "kind": "derived_net",
+      "subject": "資産の部/固定資産/有形固定資産/その他/その他(純額)",
+      "column": "2026-03-31",
+      "printed_display": 24243,
+      "computed_display": 24243,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 2,
+      "status": "exact"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/流動資産/流動資産合計",
+      "column": "2025-03-31",
+      "printed_display": 5863684,
+      "computed_display": 5863681,
+      "deviation_display": -3,
+      "deviation_yen": -3000,
+      "tolerance_display": 5,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/流動資産/流動資産合計",
+      "column": "2026-03-31",
+      "printed_display": 3377407,
+      "computed_display": 3377405,
+      "deviation_display": -2,
+      "deviation_yen": -2000,
+      "tolerance_display": 5,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/有形固定資産/有形固定資産合計",
+      "column": "2025-03-31",
+      "printed_display": 1429094,
+      "computed_display": 1429093,
+      "deviation_display": -1,
+      "deviation_yen": -1000,
+      "tolerance_display": 3,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/有形固定資産/有形固定資産合計",
+      "column": "2026-03-31",
+      "printed_display": 1352610,
+      "computed_display": 1352607,
+      "deviation_display": -3,
+      "deviation_yen": -3000,
+      "tolerance_display": 3,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/無形固定資産/無形固定資産合計",
+      "column": "2025-03-31",
+      "printed_display": 44261,
+      "computed_display": 44260,
+      "deviation_display": -1,
+      "deviation_yen": -1000,
+      "tolerance_display": 1,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/無形固定資産/無形固定資産合計",
+      "column": "2026-03-31",
+      "printed_display": 35869,
+      "computed_display": 35868,
+      "deviation_display": -1,
+      "deviation_yen": -1000,
+      "tolerance_display": 1,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/投資その他の資産/投資その他の資産合計",
+      "column": "2025-03-31",
+      "printed_display": 197069,
+      "computed_display": 197068,
+      "deviation_display": -1,
+      "deviation_yen": -1000,
+      "tolerance_display": 3,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/投資その他の資産/投資その他の資産合計",
+      "column": "2026-03-31",
+      "printed_display": 369362,
+      "computed_display": 369361,
+      "deviation_display": -1,
+      "deviation_yen": -1000,
+      "tolerance_display": 3,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/固定資産合計",
+      "column": "2025-03-31",
+      "printed_display": 1670426,
+      "computed_display": 1670424,
+      "deviation_display": -2,
+      "deviation_yen": -2000,
+      "tolerance_display": 2,
+      "status": "within_rounding_tolerance"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/固定資産/固定資産合計",
+      "column": "2026-03-31",
+      "printed_display": 1757841,
+      "computed_display": 1757841,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 2,
+      "status": "exact"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/資産合計",
+      "column": "2025-03-31",
+      "printed_display": 7534110,
+      "computed_display": 7534110,
+      "deviation_display": 0,
+      "deviation_yen": 0,
+      "tolerance_display": 1,
+      "status": "exact"
+    },
+    {
+      "kind": "subtotal_sum",
+      "subject": "資産の部/資産合計",
+      "column": "2026-03-31",
+      "printed_display": 5135249,
+      "computed_display": 5135248,
+      "deviation_display": -1,
+      "deviation_yen": -1000,
+      "tolerance_display": 1,
+      "status": "within_rounding_tolerance"
+    }
+  ],
+  "summary": {
+    "total": 20,
+    "exact": 7,
+    "within_rounding_tolerance": 13,
+    "fail": 0,
+    "incomplete_data": 0
+  },
+  "balance_identity": {
+    "id": "balance_identity",
+    "formula": "資産合計 == 負債合計 + 純資産合計",
+    "status": "skipped_page_fragment",
+    "missing_sections": [
+      "負債の部",
+      "純資産の部"
+    ],
+    "spec": "Requires all three sections of the statement. Fragments are stitched at filing level first (section headers plus 前頁からの繰越/再掲 continuation markers link fragments), then the identity is asserted per column with the same rounding tolerance as subtotal checks."
+  },
+  "coverage": {
+    "sections_present": [
+      "資産の部"
+    ],
+    "page_is_fragment": true
+  }
+}
