@@ -81,16 +81,18 @@ Simulated scans (`stress_cases/`, generated from the PDF): 200 dpi, 120 dpi, 2°
 | true PDF | 74/74 cells, 20/20 invariants | n/a |
 | scan_200dpi | 0 cells (gate rejects) | 73/74 cells ok; 4 label disassociations, 1 nil omission |
 | scan_120dpi | 0 cells (gate rejects) | 73/74 cells ok; 1 label disassociation, 1 nil omission |
-| skew / crop | 0 cells (gate rejects) | quota-blocked (see below) |
+| scan_200dpi_crop | 0 cells (gate rejects) | 74/74 cells ok; 5 label disassociations, 0 omissions |
+| scan_200dpi_skew | 0 cells (gate rejects) | 0/74 cells ok; systematic one-row value shift (75 issues) |
 
 Per-layer attribution (`eval/ocr_attribution.py`, full log `output/ablation/ABLATION_LOG.md`):
-OCR values are **digit-perfect on every emitted cell** including `△0`; failures are
-**disassociation** (misread kanji labels: 短則貸付金, 減価額却累计額, 機械装置及び連鎖具)
-and one consistent **omission** (the `－` nil cell). Error counts are non-monotone in
-resolution (120 dpi cleaner than 200 dpi). Skew/crop runs were blocked by the Space's
-anonymous ZeroGPU quota exhaustion — an operational constraint of the free demo, not a
-model verdict; finish them with: `HF_TOKEN=... python3 eval/run_ocr_space.py
-stress_cases/scan_200dpi_skew.png base output/ablation/scan_200dpi_skew_base_raw.txt`.
+OCR values are **digit-perfect on every emitted cell** including `△0`; in the clean,
+low-res, and cropped cases its failures are **disassociation** (misread kanji labels:
+短則貸付金, 減価額却累计額, 機械装置及び連鎖具) and one consistent **omission** (the `－`
+nil cell). Error counts are non-monotone in resolution (120 dpi cleaner than 200 dpi).
+The two geometry-stress cases, completed with an authenticated ZeroGPU token, split
+sharply: crop is nearly lossless (74/74 cells, 5 label disassociations), while a small
+skew shifts every value one row — the digits survive but label→value association
+collapses (0/74), the failure class most dangerous for downstream answering.
 
 ## Answerability probe (`eval/probe_questions.json`, `eval/probe_runner.py`)
 
